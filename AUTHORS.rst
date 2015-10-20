@@ -6,6 +6,7 @@ Development Lead
 ----------------
 
 * Chris Ballinger <chrisballinger@gmail.com>
+* David Brodsky <davidpbrodsky@gmail.com>
 
 Contributors
 ------------
