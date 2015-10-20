@@ -2,18 +2,18 @@
 # -*- coding: utf-8 -*-
 
 """
-test_storage_provisioner
+test_provisioner
 ----------------------------------
 
-Tests for `storage_provisioner` module.
+Tests for `provisioner` module.
 """
 
 import unittest
 
-from storage_provisioner import storage_provisioner
+from storage_provisioner import provisioner
 
 
-class TestStorage_provisioner(unittest.TestCase):
+class TestProvisioner(unittest.TestCase):
 
     def setUp(self):
         pass

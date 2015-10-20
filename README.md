@@ -1,12 +1,17 @@
 # StorageProvisioner
 
-[![Build Status](https://img.shields.io/travis/chrisballinger/storage_provisioner.svg)](https://travis-ci.org/chrisballinger/storage_provisioner) [![PyPI Page](https://img.shields.io/pypi/v/storage_provisioner.svg)](https://pypi.python.org/pypi/storage_provisioner)
+[![Build Status](https://img.shields.io/travis/PerchLive/storage_provisioner.svg)](https://travis-ci.org/PerchLive/storage_provisioner) [![PyPI Page](https://img.shields.io/pypi/v/storage_provisioner.svg)](https://pypi.python.org/pypi/storage_provisioner)
 
 Provisions storage on pluggable backends, such as AWS S3.
 
 ## Installation
 
     $ pip install storage_provisioner
+    
+## Dependencies
+
+* Python 3.5
+* [boto3](https://github.com/boto/boto3) - AWS library 
 
 ## Usage
 
@@ -36,7 +41,7 @@ import storage_provisioner
 Apache 2.0
 
 ```
-Copyright 2015 PerchLive
+Copyright 2015 Perch Innovations, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
