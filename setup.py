@@ -8,7 +8,7 @@ except ImportError:
     from distutils.core import setup
 
 
-with open('README.rst') as readme_file:
+with open('README.md') as readme_file:
     readme = readme_file.read()
 
 with open('HISTORY.rst') as history_file:
@@ -29,7 +29,7 @@ setup(
     long_description=readme + '\n\n' + history,
     author="Chris Ballinger",
     author_email='chrisballinger@gmail.com',
-    url='https://github.com/chrisballinger/storage_provisioner',
+    url='https://github.com/PerchLive/storage_provisioner',
     packages=[
         'storage_provisioner',
     ],
@@ -51,6 +51,7 @@ setup(
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
     ],
     test_suite='tests',
     tests_require=test_requirements
