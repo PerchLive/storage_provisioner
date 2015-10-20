@@ -15,11 +15,11 @@ with open('HISTORY.rst') as history_file:
     history = history_file.read().replace('.. :changelog:', '')
 
 requirements = [
-    # TODO: put package requirements here
+    'boto3',
 ]
 
 test_requirements = [
-    # TODO: put package test requirements here
+    'boto3',
 ]
 
 setup(
@@ -37,20 +37,15 @@ setup(
                  'storage_provisioner'},
     include_package_data=True,
     install_requires=requirements,
-    license="ISCL",
+    license="Apache License 2.0",
     zip_safe=False,
     keywords='storage_provisioner',
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
         'Intended Audience :: Developers',
-        'License :: OSI Approved :: ISC License (ISCL)',
+        'License :: OSI Approved :: Apache Software License',
         'Natural Language :: English',
-        "Programming Language :: Python :: 2",
-        'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
-        'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.3',
-        'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
     ],
     test_suite='tests',
