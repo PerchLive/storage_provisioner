@@ -1,22 +1,29 @@
-===============================
-StorageProvisioner
-===============================
+# StorageProvisioner
 
-.. image:: https://img.shields.io/travis/chrisballinger/storage_provisioner.svg
-        :target: https://travis-ci.org/chrisballinger/storage_provisioner
-
-.. image:: https://img.shields.io/pypi/v/storage_provisioner.svg
-        :target: https://pypi.python.org/pypi/storage_provisioner
-
+[![Build Status](https://img.shields.io/travis/chrisballinger/storage_provisioner.svg)](https://travis-ci.org/chrisballinger/storage_provisioner) [![PyPI Page](https://img.shields.io/pypi/v/storage_provisioner.svg)](https://pypi.python.org/pypi/storage_provisioner)
 
 Provisions storage on pluggable backends, such as AWS S3.
 
-* Documentation: https://storage_provisioner.readthedocs.org.
+## Installation
 
-Features
---------
+    $ pip install storage_provisioner
 
-* TODO
+## Usage
+
+```python
+import storage_provisioner
+```
+
+## Features
+
+* AWS S3 backend
+
+## TODO
+
+* Local file storage backend
+* FTP backend
+* RTMP backend
+* Your backend?
 
 ## Authors
 
