@@ -6,7 +6,7 @@ Provisions storage on pluggable backends, such as AWS S3.
 
 ## Installation
 
-    $ pip install storage_provisioner
+    $ pip3 install storage_provisioner
     
 ## Dependencies
 
