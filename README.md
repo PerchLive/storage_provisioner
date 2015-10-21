@@ -1,6 +1,6 @@
-# StorageProvisioner
+# [StorageProvisioner](https://github.com/PerchLive/storage_provisioner)
 
-[![Build Status](https://img.shields.io/travis/PerchLive/storage_provisioner.svg)](https://travis-ci.org/PerchLive/storage_provisioner) [![PyPI Page](https://img.shields.io/pypi/v/storage_provisioner.svg)](https://pypi.python.org/pypi/storage_provisioner)
+[![Build Status](https://img.shields.io/travis/PerchLive/storage_provisioner.svg)](https://travis-ci.org/PerchLive/storage_provisioner) [![PyPI Page](https://img.shields.io/pypi/v/storage_provisioner.svg)](https://pypi.python.org/pypi/storage_provisioner) [![Coverage Status](https://img.shields.io/coveralls/PerchLive/storage_provisioner.svg)](https://coveralls.io/github/PerchLive/storage_provisioner?branch=master) [![Python Versions](https://img.shields.io/pypi/pyversions/storage_provisioner.svg)](https://pypi.python.org/pypi/storage_provisioner) [![Downloads per Day](https://img.shields.io/pypi/dd/storage_provisioner.svg)](https://pypi.python.org/pypi/storage_provisioner)
 
 Provisions storage on pluggable backends, such as AWS S3.
 
@@ -10,8 +10,8 @@ Provisions storage on pluggable backends, such as AWS S3.
     
 ## Dependencies
 
-* Python 3.5
-* [boto3](https://github.com/boto/boto3) - AWS library 
+* [Python 3.5](https://www.python.org/downloads/release/python-350/) - the future is now
+* [boto3](https://github.com/boto/boto3) - Amazon AWS library 
 
 ## Usage
 
