@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from enum import Enum
 
 
 class Storage(object):
@@ -15,34 +16,99 @@ class LocalFileStorage(Storage):
         Represents the credentials needed to access storage on the local filesystem.
     """
 
-    def __init__(self, base_path=None):
+    def __init__(self, base_path: str=None):
+        self.base_path = base_path
         pass
 
 
 # region Amazon AWS
+
+class AWSS3Region(Enum):
+    USEast1 = 'us-east-1'
+    USWest1 = 'us-west-1'
+    USWest2 = 'us-west-2'
+
+    EUWest1 = 'eu-west-1'
+    EUCentral1 = 'eu-central-1'
+
+    APSouthEast1 = 'ap-southeast-1'
+    APSouthEast2 = 'ap-southeast-2'
+    APNorthEast1 = 'ap-northeast-1'
+
+    SouthAmerica1 = 'sa-east-1'
+
+class AWSFederatedUserMixin(object):
+    """
+        Represents an AWS Federated User obtained by sts.get_federation_token(..)
+    """
+
+    def __init__(self,
+                 aws_federated_user_id: str,
+                 aws_arn: str,
+                 aws_policy: str):
+
+        self.aws_federated_user_id = aws_federated_user_id
+        self.aws_arn = aws_arn
+        self.aws_policy = aws_policy
+
+
 class AWSCredentialMixin(object):
     """
         Represents the credentials needed for an AWS FederationToken
     """
 
-    def __init__(self, aws_access_key, aws_secret_key, aws_session_token, aws_expiration, policy):
-        self.aws_access_key = aws_access_key
-        self.aws_secret_key = aws_secret_key
+    def __init__(self,
+                 aws_access_key_id: str,
+                 aws_secret_access_key: str,
+                 aws_session_token: str,
+                 aws_expiration: str):
+
+        self.aws_access_key_id = aws_access_key_id
+        self.aws_secret_access_key = aws_secret_access_key
         self.aws_session_token = aws_session_token
         self.aws_expiration = aws_expiration
-        self.policy = policy
 
 
-class S3Storage(Storage, AWSCredentialMixin):
+class S3Storage(Storage, AWSCredentialMixin, AWSFederatedUserMixin):
     """
         Represents an AWS FederationToken granting access to an S3 data resource
+
+        {
+            'Credentials': {
+                'AccessKeyId': 'string',
+                'SecretAccessKey': 'string',
+                'SessionToken': 'string',
+                'Expiration': datetime(2015, 1, 1)
+            },
+            'FederatedUser': {
+                'FederatedUserId': 'string',
+                'Arn': 'string'
+            },
+            'PackedPolicySize': 123
+        }
     """
 
-    def __init__(self, s3_bucket_name, s3_bucket_region, aws_access_key, aws_secret_key, aws_session_token,
-                 aws_expiration):
+    def __init__(self,
+                 s3_bucket_name: str,
+                 s3_bucket_region: AWSS3Region,
+                 aws_access_key_id: str,
+                 aws_secret_access_key: str,
+                 aws_session_token: str,
+                 aws_expiration: int,
+                 aws_federated_user_id: str,
+                 aws_arn: str,
+                 aws_policy: str):
 
         self.s3_bucket_name = s3_bucket_name
         self.s3_bucket_region = s3_bucket_region
 
-        AWSCredentialMixin.__init__(self, aws_access_key, aws_secret_key, aws_session_token, aws_expiration)
+        AWSCredentialMixin.__init__(self,
+                                    aws_access_key_id,
+                                    aws_secret_access_key,
+                                    aws_session_token,
+                                    aws_expiration)
+        AWSFederatedUserMixin.__init__(self,
+                                       aws_federated_user_id,
+                                       aws_arn,
+                                       aws_policy)
 # endregion
