@@ -18,8 +18,11 @@ from storage_provisioner.provisioner import S3StorageProvisioner
 try:
     from tests.secrets import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
 except ImportError:
-    AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID', 'INVALID_KEY')
-    AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY', 'INVALID_SECRET')
+    AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+
+    if AWS_ACCESS_KEY_ID is None or AWS_SECRET_ACCESS_KEY is None:
+        raise EnvironmentError("AWS Credentials not present!")
 
 
 class TestS3StorageProvisioner(unittest.TestCase):
