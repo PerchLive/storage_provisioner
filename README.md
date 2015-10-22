@@ -30,6 +30,16 @@ import storage_provisioner
 * RTMP backend
 * Your backend?
 
+## Testing
+
+Create a `secrets.py` file in the `tests/` directory:
+
+```python
+AWS_ACCESS_KEY_ID = 'aws_key_id'
+AWS_SECRET_ACCESS_KEY = 'aws_secret_access_key'
+
+```
+
 ## Authors
 
 * [Chris Ballinger](https://github.com/chrisballinger)

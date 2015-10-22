@@ -45,3 +45,6 @@ docs/_build
 
 # PyCharm
 .idea/
+
+# Secretes
+secrets.py
