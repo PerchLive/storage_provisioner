@@ -18,8 +18,8 @@ from storage_provisioner.provisioner import S3StorageProvisioner
 try:
     from tests.secrets import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
 except ImportError:
-    AWS_ACCESS_KEY_ID = 'AKEYID'
-    AWS_SECRET_ACCESS_KEY = 'ASECRET'
+    AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID', 'INVALID_KEY')
+    AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY', 'INVALID_SECRET')
 
 
 class TestS3StorageProvisioner(unittest.TestCase):
