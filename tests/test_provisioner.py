@@ -9,10 +9,8 @@ Tests for `provisioner` module.
 """
 import os
 import unittest
-
 from boto3.session import Session, botocore
 from botocore.exceptions import ClientError
-
 from storage_provisioner.provisioner import S3StorageProvisioner
 from storage_provisioner.storage import S3Storage
 
@@ -108,7 +106,8 @@ class TestS3StorageProvisioner(unittest.TestCase):
 
     def assert_storage_properly_initialized(self, storage: S3Storage):
         """
-        Assert that :param storage was properly initialized with test fixture data
+        Assert that :param storage was properly initialized with test fixture data,
+        and that its functions operate as expected.
 
         :param storage: the Storage object under test
         """
@@ -119,6 +118,11 @@ class TestS3StorageProvisioner(unittest.TestCase):
 
         # Federated User Id will be XXX:USERNAME
         self.assertEqual(self.test_user_name, storage.aws_federated_user_id.split(':')[1])
+
+        test_key = 'folder/test_key.txt'
+        self.assertEqual(storage.get_url_for_key(test_key),
+                         "https://{}.s3.amazonaws.com/{}".format(storage.s3_bucket_name,
+                                                                 test_key))
 
     def assert_storage_policy_valid(self,
                                     storage: S3Storage,
@@ -157,7 +161,9 @@ class TestS3StorageProvisioner(unittest.TestCase):
             absolute_unscoped_storage_path = os.path.join(unscoped_storage_path, self.test_file_name)
             user_s3.Bucket(self.test_bucket_name).put_object(Key=absolute_unscoped_storage_path,
                                                              Body=self.test_file_contents)
-            raise AssertionError('Wrote to path ({0}) outside storage_path ({1})!'.format(absolute_unscoped_storage_path, storage_path))
+            raise AssertionError(
+                'Wrote to path ({0}) outside storage_path ({1})!'.format(absolute_unscoped_storage_path,
+                                                                         storage_path))
         except ClientError as err:
             print('Got ClientError writing outside storage_path, as expected: ', err)
 
@@ -187,8 +193,7 @@ class TestS3StorageProvisioner(unittest.TestCase):
             except ClientError as err:
                 print('Unable to delete bucket:', err)
 
+    if __name__ == '__main__':
+        import sys
 
-if __name__ == '__main__':
-    import sys
-
-    sys.exit(unittest.main())
+        sys.exit(unittest.main())

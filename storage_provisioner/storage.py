@@ -38,6 +38,7 @@ class AWSS3Region(Enum):
 
     SouthAmerica1 = 'sa-east-1'
 
+
 class AWSFederatedUserMixin(object):
     """
         Represents an AWS Federated User obtained by sts.get_federation_token(..)
@@ -108,8 +109,18 @@ class S3Storage(Storage, AWSCredentialMixin, AWSFederatedUserMixin):
                                     aws_secret_access_key,
                                     aws_session_token,
                                     aws_expiration)
+
         AWSFederatedUserMixin.__init__(self,
                                        aws_federated_user_id,
                                        aws_arn,
                                        aws_policy)
+
+    def get_url_for_key(self, key: str) -> str:
+        """
+        Return a string representing the URL where the specified key would reside
+        :param key: A key describing a file location, leading slash omitted. e.g: "some_folder/myfile.txt"
+        :return: a fully-qualified url representing the key. e.g: "https://bucket.s3.amazonaws.com/some_folder/myfile.txt"
+        """
+        return "https://{}.s3.amazonaws.com/{}".format(self.s3_bucket_name, key)
+
 # endregion
