@@ -131,6 +131,7 @@ class S3StorageProvisioner:
         :param user_name: the user name to associate with this credential in AWS. Will be truncated to 32 characters.
         :param bucket_name: the S3 bucket name. A bucket with this name will be created if necessary.
         :param path: a path within the bucket, omitting leading '/', where access is scoped if policy is None.
+        if a trailing slash is omitted (e.g: 'example'), access is granted to 'example.ext' and 'example/whatever.ext'
         :param region: the region where the S3 bucket should be created if necessary. DEFAULT_AWS_S3_REGION if None.
         :param user_policy: a custom AWS access policy which will be used as-is to scope credentials.
         :param duration_sec: the duration of the returned credentials. If using root AWS credentials, the maximum
