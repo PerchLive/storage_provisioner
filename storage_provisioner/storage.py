@@ -18,6 +18,7 @@ class LocalFileStorage(Storage):
 
     def __init__(self, base_path: str=None):
         self.base_path = base_path
+        Storage.__init__(self)
         pass
 
 
