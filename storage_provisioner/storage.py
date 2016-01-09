@@ -93,6 +93,7 @@ class S3Storage(Storage, AWSCredentialMixin, AWSFederatedUserMixin):
     def __init__(self,
                  s3_bucket_name: str,
                  s3_bucket_region: AWSS3Region,
+                 s3_bucket_path: str,
                  aws_access_key_id: str,
                  aws_secret_access_key: str,
                  aws_session_token: str,
@@ -103,6 +104,7 @@ class S3Storage(Storage, AWSCredentialMixin, AWSFederatedUserMixin):
 
         self.s3_bucket_name = s3_bucket_name
         self.s3_bucket_region = s3_bucket_region
+        self.s3_bucket_path = s3_bucket_path
 
         AWSCredentialMixin.__init__(self,
                                     aws_access_key_id,

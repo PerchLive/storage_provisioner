@@ -168,6 +168,7 @@ class S3StorageProvisioner:
 
         return S3Storage(bucket_name,
                          region_name,
+                         path,
                          token_aws_creds['AccessKeyId'],
                          token_aws_creds['SecretAccessKey'],
                          token_aws_creds['SessionToken'],
