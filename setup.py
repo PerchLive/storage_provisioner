@@ -25,7 +25,7 @@ setup(
     author="Chris Ballinger, David Brodsky",
     author_email='chrisballinger@gmail.com, dbro@dbro.pro',
     url='https://github.com/PerchLive/storage_provisioner',
-    download_url='https://github.com/PerchLive/storage_provisioner/tarball/0.1',
+    download_url='https://github.com/PerchLive/storage_provisioner/tarball/0.1.1',
     packages=[
         'storage_provisioner',
     ],
