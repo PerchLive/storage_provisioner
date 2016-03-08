@@ -21,7 +21,7 @@ which allow time-restricted access to your AWS resources.
 
 ```python
 from storage_provisioner.provisioner import S3StorageProvisioner
-from storage_provisioner.storage import S3Storage
+from storage_provisioner.storage import S3Storage, AWSS3Region
 
 provisioner = S3StorageProvisioner(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                    aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
