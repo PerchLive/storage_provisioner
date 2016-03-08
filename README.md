@@ -7,16 +7,54 @@ Provisions storage on pluggable backends, such as AWS S3.
 ## Installation
 
     $ pip3 install storage_provisioner
-    
+
 ## Dependencies
 
 * [Python 3.5](https://www.python.org/downloads/release/python-350/) - the future is now
-* [boto3](https://github.com/boto/boto3) - Amazon AWS library 
+* [boto3](https://github.com/boto/boto3) - Amazon AWS library
 
 ## Usage
 
+Currently `S3StorageProvisioner` is the only implementation of `StorageProvisioner`.
+`S3StorageProvisioner` creates a new IAM user and STS Federation token for each provisioned storage,
+which allow time-restricted access to your AWS resources.
+
 ```python
-import storage_provisioner
+from storage_provisioner.provisioner import S3StorageProvisioner
+from storage_provisioner.storage import S3Storage
+
+provisioner = S3StorageProvisioner(aws_access_key_id=AWS_ACCESS_KEY_ID,
+                                   aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+
+storage = PROVISIONER.provision_storage(user_name=USERNAME,             # Required. Username of to-be-created IAM user owning access credentials.
+                                        bucket_name=S3_BUCKET_NAME,     # Required. Name of S3 Bucket. Will be created if necessary.
+                                        path=new_stream.storage_path(), # Optional. Limit access to bucket directory.
+                                        region=AWSS3Region.USEast1,     # Optional. Region of bucket.
+                                        user_policy=USER_POLICY,        # Optional. Complete AWS policy of the to-be-created IAM user. If None, will be generated based on value of :param path. If not None, :param path is ignored.
+                                        duration_sec=129600)            # Optional. Expiry time of the returned credentials. Restrictions apply per AWS guidelines, see function docstring.
+
+# storage contains all data needed by an S3 client to access provisioned resources.
+```
+
+The AWS credentials provided to `S3StorageProvisioner` need access to S3, IAM, and STS.
+Below is an example policy, which you should modify to restrict access only to the subset of resources you'll need.
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Action": [
+                "s3:*",
+                "iam:*",
+                "sts:*"
+            ],
+            "Resource": "*",
+            "Effect": "Allow",
+            "Sid": "Stmt1392873903000"
+        }
+    ]
+}
 ```
 
 ## Features
