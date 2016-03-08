@@ -19,13 +19,13 @@ with open(os.path.join(os.path.dirname(__file__), 'requirements.txt')) as f:
 
 setup(
     name='storage_provisioner',
-    version='0.1.1',
+    version='0.1.2',
     description="Provisions storage on pluggable backends, such as AWS S3.",
     long_description=readme + '\n\n' + history,
     author="Chris Ballinger, David Brodsky",
     author_email='chrisballinger@gmail.com, dbro@dbro.pro',
     url='https://github.com/PerchLive/storage_provisioner',
-    download_url='https://github.com/PerchLive/storage_provisioner/tarball/0.1.1',
+    download_url='https://github.com/PerchLive/storage_provisioner/tarball/0.1.2',
     packages=[
         'storage_provisioner',
     ],
