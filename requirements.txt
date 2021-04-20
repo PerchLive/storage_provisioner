@@ -14,7 +14,7 @@ MarkupSafe==0.23
 mccabe==0.3.1
 pep8==1.5.7
 pluggy==0.3.1
-py==1.4.30
+py==1.10.0
 pyflakes==0.8.1
 Pygments==2.0.2
 python-dateutil==2.4.2
